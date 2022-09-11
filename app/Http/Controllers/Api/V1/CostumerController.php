@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
+use App\Http\Controllers\Controller;
 
 use App\Models\Costumer;
 use App\Http\Requests\StoreCostumerRequest;
 use App\Http\Requests\UpdateCostumerRequest;
+use App\Http\Resources\V1\CostumerResource;
+use App\Http\Resources\V1\CostumerCollection;
 
 class CostumerController extends Controller
 {
@@ -15,7 +18,7 @@ class CostumerController extends Controller
      */
     public function index()
     {
-        //
+        return new CostumerCollection(Costumer::paginate());
     }
 
     /**
@@ -47,7 +50,7 @@ class CostumerController extends Controller
      */
     public function show(Costumer $costumer)
     {
-        //
+        return new CostumerResource($costumer);
     }
 
     /**
